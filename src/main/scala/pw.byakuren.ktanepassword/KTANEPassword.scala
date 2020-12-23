@@ -10,14 +10,15 @@ object KTANEPassword extends App {
     "where", "which", "world", "would", "write")
   var index = 0
   while (available.size > 1) {
-    System.out.println(s"${available.size} remain")
-    val input = readLine()
-    var nAvailable: Seq[String] = Seq()
-    for (c <- input.toCharArray) {
-      nAvailable++=available.filter(_.charAt(index)==c)
+    val size = available.size
+    if (size < 5) {
+      println(available)
+    } else {
+      System.out.println(s"$size remain")
     }
-    index+=1
-    available = nAvailable
+    val input = readLine()
+    available = available.filter(a => input.toCharArray.contains(a.charAt(index)))
+    index += 1
   }
   System.out.println(available.head)
 }
